@@ -1,67 +1,26 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>File Directory</title>
 	<meta charset="utf-8" />
+    <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="Content/index.css" rel="stylesheet" />
 </head>
 <body>
     <h2>Directory List</h2>
-
     <div class="box">
-        <ul class="directory-list">
-            <li class="folder">
-                assets
-                <ul>
-                    <li class="folder">
-                        css
-                        <ul>
-                            <li>typography.css</li>
-                            <li>layout.css</li>
-                            <li>modules.css</li>
-                            <li>states.css</li>
-                            <li>theme.css</li>
-                        </ul>
-                    </li>
-                    <li class="folder">
-                        js
-                        <ul>
-                            <li>custom.js</li>
-                            <li>jquery.js</li>
-                        </ul>
-                    </li>
-                    <li class="folder">
-                        images
-                        <ul>
-                            <li>logo.svg</li>
-                            <li>arrow-sprite.svg</li>
-                            <li>social-sprite.svg</li>
-                        </ul>
-                    </li>
-                    <li>functions.php</li>
-                </ul>
-            </li>
-            <li class="folder">
-                templates
-                <ul>
-                    <li class="folder">
-                        <a href="#just-makin-sure-links-look-ok">pages</a>
-                        <ul>
-                            <li><a href="#just-makin-sure-links-look-ok">about.tpl</a></li>
-                            <li>pricing.tpl</li>
-                            <li>contact.tpl</li>
-                            <li>home.tpl</li>
-                            <li>features.tpl</li>
-                        </ul>
-                    </li>
-                    <li>header.tpl</li>
-                    <li>menu.tpl</li>
-                    <li>footer.tpl</li>
-                </ul>
-            </li>
-            <li>index.php</li>
-            <li>style.css</li>
-        </ul>
+        <ul class="directory-list" data-bind="template: { name: 'ItemTemplate', foreach: FolderDirectory }"></ul>
     </div>
+    <script type="text/html" id="ItemTemplate">
+        <li data-bind="class: $data.cssClass">
+            <span data-bind="text:$data.text,click:$root.GetSubFoldersorFiles"></span>
+            <ul data-bind="template: { name: 'ItemTemplate', foreach: $data.items,if:expandorCollapse }"></ul>
+        </li>
+    </script>
+    <script src="Scripts/jquery-3.4.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/knockout-3.5.0.js"></script>
+    <script src="Scripts/ko-mapping.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
